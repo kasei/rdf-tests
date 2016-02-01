@@ -1,0 +1,11 @@
+PREFIX : <http://www.example.org/>
+ASK {
+	{
+		SELECT (SAMPLE(?x) AS ?sample)
+		WHERE {
+			:decimals :dec ?o
+			BIND(3.0/(?o-1.0) AS ?x)
+		}
+	}
+	FILTER(?sample = 1.2 || ?sample = 2.5 || !BOUND(?sample))
+}

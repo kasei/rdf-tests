@@ -1,0 +1,9 @@
+PREFIX : <http://www.example.org/>
+
+SELECT (COUNT(*) AS ?A) (COUNT(?T) AS ?C)
+WHERE {
+	?S :p1 ?O .
+	OPTIONAL {
+		?T :p2 ?O .
+	}
+}

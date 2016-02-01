@@ -38,6 +38,8 @@
     :agg-err-01
     :agg-err-02
     :agg-empty-group2
+    :agg-count-with-unbound
+    :agg-sample-with-unbound
 ) .
 
 
@@ -335,7 +337,7 @@
 
 :agg-empty-group2 rdf:type mf:QueryEvaluationTest ;
 	mf:name "agg empty group" ;
-    mf:name "Aggregate over empty group resulting in a row with unbound variables" ;
+    rdfs:comment "Aggregate over empty group resulting in a row with unbound variables" ;
 	mf:feature sparql:aggregate ;
 	rdfs:seeAlso <http://answers.semanticweb.com/questions/17410/semantics-of-sparql-aggregates> ;
     dawgt:approval dawgt:Approved ;
@@ -345,3 +347,27 @@
            qt:data   <empty.ttl> ] ;
     mf:result  <agg-empty-group2.srx>
     .    
+
+:agg-count-with-unbound rdf:type mf:QueryEvaluationTest ;
+	mf:name "agg count with unbound" ;
+    rdfs:comment "COUNT(?o) with potentially unbound ?o" ;
+	mf:feature sparql:aggregate ;
+    dawgt:approval dawgt:Proposed ;
+    mf:action
+         [ qt:query  <agg-count-unbound.rq> ;
+           qt:data   <agg01.ttl> ] ;
+    mf:result  <agg-count-unbound.srx>
+    .    
+
+:agg-sample-with-unbound rdf:type mf:QueryEvaluationTest ;
+    mf:name    "SAMPLE with unbound" ;
+    rdfs:comment "SAMPLE(?o) with potentially unbound ?o" ;
+	mf:feature sparql:sample ;
+	rdfs:seeAlso <https://lists.w3.org/Archives/Public/public-sparql-dev/2016JanMar/0005.html> ;
+    dawgt:approval dawgt:Proposed;
+    mf:action
+         [ qt:query  <agg-sample-unbound.rq> ;
+           qt:data   <agg-numeric.ttl> ] ;
+    mf:result  <agg-sample-unbound.srx>
+    .
+
